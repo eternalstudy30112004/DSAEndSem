@@ -3,14 +3,14 @@
 #include <limits.h>
 
 typedef struct stack{
-    int *data;
+    char *data;
     int top;
     int size;
 } stack;
 
 void init(stack *s, int size){
     s->size = size;
-    int *data = (int *)malloc(sizeof(int) * size);
+    char *data = (char *)malloc(sizeof(char) * size);
     if(data){
         s->data= data;
         s->top = -1;
@@ -23,7 +23,7 @@ int isEmpty(stack s){
 int isFull(stack s){
     return s.top == (s.size - 1);
 }
-void push(stack *s, int data){
+void push(stack *s, char data){
     if(isFull(*s)){
         printf("stack overflow !1");
         return;
@@ -32,10 +32,10 @@ void push(stack *s, int data){
     s->data[s->top] = data;
 }
 
-int pop(stack *s){
+char pop(stack *s){
     if(isEmpty(*s)){
         printf("stack underflow 1!");
-        return INT_MIN;
+        return '#';
     }
     
     s->top--;
@@ -43,10 +43,10 @@ int pop(stack *s){
 
 }
 
-int peek(stack *s){
+char peek(stack *s){
     if(isEmpty(*s)){
         printf("stack underflow 1!");
-        return INT_MIN;
+        return '#';
     }
     return s->data[s->top];
 }
